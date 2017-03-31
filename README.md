@@ -1,6 +1,6 @@
-##Fully customizable captcha in PHP
+## Fully customizable captcha in PHP
 
-##Usage
+## Usage
 
 1. add captcha_class.php and captcha_image.php to your system
 2. search and upload any TTF font
@@ -43,7 +43,7 @@ if($captcha->check('PREFIX', $_POST['captcha_input'])){
 
 *Note 2: minimum PHP version: 4.0.6*
 
-##Examples
+## Examples
 
 Basic:
 
