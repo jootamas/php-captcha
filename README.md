@@ -1,25 +1,35 @@
-## Fully customizable captcha in PHP
+## Full customizable captcha in PHP
 
 ## Usage
 
-1. add captcha_class.php and captcha_image.php to your system
-2. search and upload any TTF font
-3. set $url (URL of captcha image) and $ttf (path of TTF font) in Captcha class
-4. set captcha parameters as you wish, based on your site design
+1. add captcha.class.php to your system
+2. search any font in TTF or OTF, and set it in the Captcha class
+3. set captcha parameters as you wish, based on your site design
 
-Get captcha:
+Quick example:
 
 ```php
+<?php
+session_start();
+include('captcha.class.php');
+
 $captcha = new Captcha();
 
 /* Optional: overwrite default parameters */
 $captcha->reconfigure('str_length', '4');
-```
 
-Form:
-
-```php
+if($_POST){
+ if($captcha->check('PREFIX', $_POST['captcha_input'])){
+  /* success, do something */
+ } else {
+  /* error, do something */
+ }
+}
+?>
 <form method="post">
+<input type="text" name="name" />
+<input type="text" name="email" />
+<textarea name="message"></textarea>
 ...
 <img src="<?php echo $captcha->get('PREFIX'); ?>" />
 ...
@@ -27,21 +37,7 @@ Form:
 </form>
 ```
 
-*PREFIX: If do you use captcha on more pages, you can set prefix, e.g. contact, cart, etc.*
-
-Validate:
-
-```php
-if($captcha->check('PREFIX', $_POST['captcha_input'])){
-	/* success, do something */
-} else {
-	/* error, do something */
-}
-```
-
-*Note 1: session_start() required!*
-
-*Note 2: minimum PHP version: 4.0.6*
+*PREFIX: If you use captcha on more pages, you can set prefix, e.g. contact, cart, etc.*
 
 ## Examples
 
@@ -75,7 +71,34 @@ And any sizes:
 
 ![Picture](http://demo.jootamas.eu/php-captcha/php-captcha-example-9.jpg)
 
-(font: https://fonts.google.com/specimen/Titillium+Web)
+Patterns
+
+![Picture](http://demo.jootamas.eu/php-captcha/php-captcha-example-10.jpg)
+
+![Picture](http://demo.jootamas.eu/php-captcha/php-captcha-example-11.jpg)
+
+## Changelog
+
+### 18/12/2016 - v1.0
+
+init
+
+### 04/09/2017 - v2.0
+
+- some fixes
+- simplification: remove captcha_image.php, the captcha image generated in the Captcha class
+- use pattern
+- replace the attributes of check() function
+
+## Notes
+
+*Note 1: session_start() required!*
+
+*Note 2: minimum PHP version: 4.0.6*
+
+*Font: https://fonts.google.com/specimen/Titillium+Web*
+
+*Patterns: http://bgrepeat.com*
 
 -----
 

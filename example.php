@@ -4,7 +4,7 @@
  */
 session_start();
 
-include('captcha_class.php');
+include('captcha.class.php');
 /**
  * Call captcha
  */
@@ -17,7 +17,7 @@ $captcha->reconfigure('str_length', '4');
  * Validate
  */
 if($_POST){
- if($captcha->check('contact_form', $_POST['captcha_input'])){
+ if($captcha->check($_POST['captcha_input'], 'contact_form')){
   /* success, do something */
   echo 'captcha OK';
   echo '<br />';
