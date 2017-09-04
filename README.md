@@ -19,7 +19,7 @@ $captcha = new Captcha();
 $captcha->reconfigure('str_length', '4');
 
 if($_POST){
- if($captcha->check('PREFIX', $_POST['captcha_input'])){
+ if($captcha->check($_POST['captcha_input'], 'PREFIX')){
   /* success, do something */
  } else {
   /* error, do something */
@@ -71,7 +71,7 @@ And any sizes:
 
 ![Picture](http://demo.jootamas.eu/php-captcha/php-captcha-example-9.jpg)
 
-Patterns
+Patterns:
 
 ![Picture](http://demo.jootamas.eu/php-captcha/php-captcha-example-10.jpg)
 
