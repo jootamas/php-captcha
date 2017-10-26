@@ -13,13 +13,15 @@ Quick example:
 session_start();
 include('captcha.class.php');
 
+define(CAPTCHA_TTF, './myfont.ttf');
+
 $captcha = new Captcha();
 
 /* Optional: overwrite default parameters */
-$captcha->reconfigure('str_length', '4');
+$captcha->str_length = 4;
 
 if($_POST){
- if($captcha->check($_POST['captcha_input'], 'PREFIX')){
+ if($captcha->check($_POST['captcha_input'])){
   /* success, do something */
  } else {
   /* error, do something */
@@ -31,13 +33,13 @@ if($_POST){
 <input type="text" name="email" />
 <textarea name="message"></textarea>
 ...
-<img src="<?php echo $captcha->get('PREFIX'); ?>" />
+<img src="<?php echo $captcha->get(); ?>" />
 ...
 <input type="text" name="captcha_input" maxlength="4" />
 </form>
 ```
 
-*PREFIX: If you use captcha on more pages, you can set prefix, e.g. contact, cart, etc.*
+*PREFIX: If you use more captcha on one page, you can set prefix, e.g. contact, cart, etc.*
 
 ## Examples
 
@@ -89,6 +91,12 @@ init
 - simplification: remove captcha_image.php, the captcha image generated in the Captcha class
 - use pattern
 - replace the attributes of check() function
+
+### 26/10/2017 - v2.1
+
+- quick fix at patterns
+- error handling: if don't set font file print error message and exit
+- remove reconfigure() function, because it's unnecessary
 
 ## Notes
 

@@ -1,8 +1,13 @@
 <?php
 /**
- * session_start() required in your system !
+ * session_start() required!
  */
 session_start();
+/*
+ * define font (required) and pattern (optional)
+ */
+define(CAPTCHA_TTF, '');
+define(CAPTCHA_PATTERN, '');
 
 include('captcha.class.php');
 /**
@@ -12,7 +17,7 @@ $captcha = new Captcha();
 /**
  * Optional: overwrite default parameters
  */
-$captcha->reconfigure('str_length', '4');
+$captcha->str_length = 4;
 /**
  * Validate
  */
